@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en" ng-app>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="angular.min.js"></script>
+    <style>
+        body,ul{padding:0;margin:0;}
+        li{list-style: none}
+        body{
+            font:13px Helvetica, arial, freesans, clean, sans-serif;
+            background:#000 url(img/bg.jpg) no-repeat;
+            width:1024px;
+            padding:8px 0;
+        }
+        .main{
+            overflow: hidden;
+            background-color: #fff8e7;
+            border-radius: 8px;
+            height:732px;
+            margin:0 8px 0 69px;
+        }
+        .main .nav{
+            height:50px;
+            position: relative;
+            background-color: #fff8e7;
+            box-shadow: 0 2px 2px rgba(0,0,0,0.25);
+        }
+
+        .aside{
+            width:300px;
+        }
+
+        .list{
+            height:732px;
+            border-right:1px solid #bbbab3;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.35);
+
+        }
+        .list .item{
+            font-size:12px;
+            color:#8f8d93;
+            background-color:#8f8d93;
+        }
+        
+        .list .item .item-inner{
+            padding:12px 17px;
+            border-bottom:1px solid #f0eee3;
+        }
+
+        .list .item.odd{
+            background-color: #f9f7eb;
+        }
+
+        .list .item.even{
+            background-color: #fffef4;
+        }
+        .list .item.on{
+            background-color: #f5aa3e;
+            color:#fff;
+        }
+        .list .item.on .item-inner{
+        }
+        .list .item .title{
+            margin-bottom: 9px;
+        }
+        .list .item .title .index{
+            color:#fff;
+            padding:2px;
+            width:12px;
+            height:12px;
+            line-height: 12px;
+            display: inline-block;
+            text-align: center;
+            margin-right:7px;
+            background-color: #c4b9b2;
+            border-radius:2px;
+        }
+        .list .item .title .name{
+        }
+        .list .item .rate{
+            margin-bottom: 10px;
+        }
+        
+        .list .info{}
+        .list .info .loc{}
+        .list .info .dist{float:right;}
+
+
+        .content{}
+        .content .map{
+            border:1px solid #e2dbcc;
+            border-radius:6px;
+            padding:4px;
+        }
+    </style>
+    <script>
+    function Nav($scope) {
+        $scope.items = []
+        for(var i = 0;i<3;i++){
+            $scope.items.push({
+                index:i+1,
+                name:"Home Garden",
+                price:240,
+                loc:"中山公园",
+                dist:"<100m",
+                on:(i==0?"on":""),
+                oddeven:(i%2?"odd":"even")
+            });
+        }
+    }
+    </script>
+</head>
+<body>
+    <div class="toolbar"></div>
+    <div class="main">
+        <div class="nav"></div>
+        <div class="body">
+            <div class="aside">
+                <div class="tooltip"></div>
+                <ul class="list" ng-controller="Nav">
+                    <li ng-repeat="item in items" class="item {{item.on}} {{item.oddeven}}">
+                        <div class="item-inner">
+                        <div class="title">
+                            <span class="index">{{item.index}}</span>
+                            <span class="name">{{item.name}}</span>
+                        </div>
+                        <div class="rate">
+                            <div class="star">
+                                
+                            </div>
+                            <div class="cost">人均:￥{{item.price}}</div>
+                        </div>
+                        <div class="info">
+                            <div class="dist">{{item.dist}}</div>
+                            <div class="loc">{{item.loc}} 更多咖啡厅</div>
+                        </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="content">
+                <div class="map"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
